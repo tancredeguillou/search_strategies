@@ -1,10 +1,16 @@
 package search;
 
+import java.util.LinkedList;
+
 // frontier is the list of nodes, queue for BFS and stack for DFS.
-public interface Frontier {
+public abstract class Frontier {
 	
-	void addNode(Node node);
-	void clear();
-	boolean isEmpty();
-	Node removeNode();
+	public LinkedList<Node> frontier;
+	
+	abstract void addNode(Node node);
+	abstract void clear();
+	abstract boolean isEmpty();
+	abstract Node removeNode();
+	
+	abstract int maxNodes();
 }

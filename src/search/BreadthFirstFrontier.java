@@ -1,25 +1,28 @@
 package search;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
-public class BreadthFirstSearch implements Frontier {
+public class BreadthFirstFrontier extends Frontier {
 	
-	//For BFS the frontier is a queue.
-	private Queue<Node> frontier;
+	private int maxNodes = 0;
 	
-	public BreadthFirstSearch() {
+	public BreadthFirstFrontier() {
 		this.frontier = new LinkedList<Node>();
 	}
-
+	
+	// For BFS the frontier is a queue.
 	@Override
 	public void addNode(Node node) {
 		frontier.add(node);
+		if (frontier.size() > maxNodes) {
+			maxNodes = frontier.size();
+		}
 	}
 
 	@Override
 	public void clear() {
 		frontier.clear();
+		maxNodes = 0;
 	}
 
 	@Override
@@ -30,6 +33,11 @@ public class BreadthFirstSearch implements Frontier {
 	@Override
 	public Node removeNode() {
 		return frontier.remove();
+	}
+
+	@Override
+	public int maxNodes() {
+		return maxNodes;
 	}
 
 }

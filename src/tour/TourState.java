@@ -28,4 +28,27 @@ public class TourState implements State {
 		newVisitedCities.add(road.targetCity);
 		return new TourState(newVisitedCities, road.targetCity);
 	}
+	
+	// one tour state is equal to another if the current city and the visited cities are the same.
+	@Override
+	public boolean equals(Object that) {
+		// check the basics
+		if (this == that) return true;
+		if (that == null) return false;
+		if (this.getClass() != that.getClass()) return false;
+		
+		final TourState other = (TourState)that;
+		// check that the current cities of both states match
+		if(!this.currentCity.name.equals(other.currentCity.name)) return false;
+		
+		// check that the set of visited cities of both states match
+		if(this.visitedCities.equals(other.visitedCities)) return false;
+		
+		return true;
+	}
+	
+	@Override
+	public int hashCode() {
+		return currentCity.hashCode() + ((visitedCities == null) ? 0 : visitedCities.hashCode());
+	}
 }

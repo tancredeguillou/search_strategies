@@ -1,24 +1,28 @@
 package search;
 
-import java.util.Stack;
+import java.util.LinkedList;
 
-public class DepthFirstFrontier implements Frontier {
+public class DepthFirstFrontier extends Frontier {
 	
-	// For DFS the frontier is a stack.
-	private Stack<Node> frontier;
+	private int maxNodes = 0;
 	
 	public DepthFirstFrontier() {
-		this.frontier = new Stack<Node>();
+		this.frontier = new LinkedList<Node>();
 	}
-
+	
+	// For DFS the frontier is a stack.
 	@Override
 	public void addNode(Node node) {
-		frontier.add(node);
+		frontier.push(node);
+		if (frontier.size() > maxNodes) {
+			maxNodes = frontier.size();
+		}
 	}
 
 	@Override
 	public void clear() {
 		frontier.clear();
+		maxNodes = 0;
 	}
 
 	@Override
@@ -29,6 +33,11 @@ public class DepthFirstFrontier implements Frontier {
 	@Override
 	public Node removeNode() {
 		return frontier.pop();
+	}
+
+	@Override
+	public int maxNodes() {
+		return maxNodes;
 	}
 	
 }

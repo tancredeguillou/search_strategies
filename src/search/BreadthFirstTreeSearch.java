@@ -2,7 +2,6 @@ package search;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Set;
 
 public class BreadthFirstTreeSearch {
 	public static Node findSolution(State initialConfiguration, GoalTest goalTest) {
