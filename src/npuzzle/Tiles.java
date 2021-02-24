@@ -79,6 +79,7 @@ public class Tiles implements State {
 		if (this.getClass() != that.getClass()) return false;
 		
 		final Tiles other = (Tiles)that;
+		
 		// check if the width and empty tile match
 		if (this.getWidth() != other.getWidth() || this.getEmptyTileColumn() != other.getEmptyTileColumn()
 				|| this.getEmptyTileRow() != other.getEmptyTileRow()) return false;
@@ -94,7 +95,13 @@ public class Tiles implements State {
 	
 	@Override
 	public int hashCode() {
-		return tiles.hashCode();
+		int hash = 0;
+		for (int i = 0; i < this.getWidth(); i++) {
+			for (int j = 0; j < this.getWidth(); j++) {
+				hash += 7*hash + this.getTile(i, j);
+			}
+		}
+		return hash;
 	}
 	
 }
