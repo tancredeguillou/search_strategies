@@ -12,4 +12,9 @@ public enum Movement implements Action {
 		this.deltaRow = deltaRow;
 		this.deltaColumn = deltaColumn;
 	}
+
+	@Override
+	public int actionCost() {
+		return 1;
+	}
 }

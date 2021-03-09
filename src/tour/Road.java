@@ -15,4 +15,9 @@ public class Road implements Action {
 	public int cost() {
 		return length;
 	}
+	@Override
+	public int actionCost() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

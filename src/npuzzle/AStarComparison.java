@@ -1,16 +1,15 @@
 package npuzzle;
 
-import search.BreadthFirstFrontier;
-import search.DepthFirstFrontier;
+import search.AStarFunction;
+import search.BestFirstFrontier;
 import search.GoalTest;
 import search.GraphSearch;
+import search.MisplacedTilesHeuristicFunction;
 import search.Node;
 import search.TreeSearch;
 
-public class Comparison {
+public class AStarComparison {
 	public static void main(String[] args) {
-		//System.out.println("This is a demonstration of breadth-first tree search on 8-puzzle");
-		System.out.println();
 		
 		Tiles initialConfiguration = new Tiles(new int[][] {
 			{ 7, 4, 2 },
@@ -21,13 +20,15 @@ public class Comparison {
 
 		GoalTest goalTest = new TilesGoalTest();
 		
+		MisplacedTilesHeuristicFunction heuristicFunction = new MisplacedTilesHeuristicFunction();
 		
+		AStarFunction AStarFunction = new AStarFunction(heuristicFunction);
 		
-		BreadthFirstFrontier frontier = new BreadthFirstFrontier();
+		BestFirstFrontier frontier = new BestFirstFrontier(AStarFunction);
 		//DepthFirstFrontier frontier = new DepthFirstFrontier();
 		
-		//TreeSearch search = new TreeSearch(frontier);
-		GraphSearch search = new GraphSearch(frontier);
+		TreeSearch search = new TreeSearch(frontier);
+		//GraphSearch search = new GraphSearch(frontier);
 		
 		Node solution4 = search.findSolution(initialConfiguration, goalTest);
 		
